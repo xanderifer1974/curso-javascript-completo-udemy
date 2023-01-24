@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tarefas</title>
+
+
+</head>
+
+<body>
+
+    <h1>Lista de Tarefas</h1>
+    <button onclick="AdicionarTarefas()">Adicionar tarefa</button>
+    <button onclick="ExibirTarefa()">Exibir Tarefas</button>
+    <button onclick="LimparLista()">Limpar Lista</button>
+
+    <div id="tarefas">
+
+    </div>
+
+    <script>
+
+        const exibirTarefa = document.getElementById("tarefas");
+
+        let tarefas = [];        
+        let AdicionarTarefas = () => {
+
+            let tarefa = prompt("Digite uma Tarefa:");
+
+            tarefas.push(tarefa);
+
+
+
+        }
+
+        let ExibirTarefa = () => {
+
+            let listaTarefas = "";
+
+            for (let i = 0; i < tarefas.length; i++) {
+
+                listaTarefas += `${tarefas[i]} <br>`
+
+            }
+
+            exibirTarefa.innerHTML = listaTarefas;
+
+        }
+
+        let LimparLista = () =>
+         {
+            tarefas = [];
+            exibirTarefa.innerHTML = "";
+         
+         }
+
+    </script>
+
+</body>
+
+</html>
