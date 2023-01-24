@@ -1,6 +1,6 @@
 (function(){
 
-const usuario = "Alexandre Ferreira";
+const usuario = "Natan Spinelli Ferreira";
 
 if(usuario){
 
@@ -9,6 +9,7 @@ if(usuario){
     topBarElement.innerHTML = `<p>Bem-vindo(a), <b> ${usuario} </b> </p>`
 
     const elementoPai = document.querySelector(".hero")
+    elementoPai.insertBefore(topBarElement,elementoPai.firstElementChild)   
     
 
 }
