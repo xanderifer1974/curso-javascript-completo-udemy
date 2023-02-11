@@ -21,3 +21,12 @@ como também podemos passar valores.
 let arr3 = arr1.concat(arr2);
 
 console.log(arr3)
+
+/*
+Nas versões anteriores do javascript, se usava o método concat, para fazer cópia de array.
+Mas hoje, existem outras formas de fazer isso.
+*/
+
+let arr4 = [].concat(arr3,5,41);
+
+console.log(arr4);
