@@ -10,7 +10,7 @@
 
         const tds = trs[x].querySelectorAll("td")
         console.log(tds)
-        media = avarege(
+        media = average(
             parseFloat(tds[1].textContent),
             parseFloat(tds[2].textContent),
             parseFloat(tds[3].textContent),
