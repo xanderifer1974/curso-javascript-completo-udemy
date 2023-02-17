@@ -1,47 +1,37 @@
-(function(){
+(function () {
 
   /*
-  Noova versão do código de cálculo de média, no qual
-  foi criada uma função que cria o objeto com as propriedades
-  de forma dinâmica. A versão original da Udemy não funcionou, então foi
-  criada uma nova solução com a ajuda do chatGPT
+  Nova versão que irá construir os dados da tabela de forma
+  dinâmica a partir de um objeto JSON
   */
-  const trHeader = document.querySelector("thead tr")  
-  const thsAlunoNotas = trHeader.querySelectorAll("[aluno-nota]")
-  const trs = document.querySelectorAll("tbody tr")
-  const valoresPropriedades = []
-  const alunos_notas = Array.from(thsAlunoNotas)
-  alunos_notas.forEach(element => {
-    valoresPropriedades.push(element.getAttribute("aluno-nota"))
-   });
+  const alunos = [
+    { nome: "Daniel", n1: 0, n2: 3, n3: 7.5, n4: 3 },
+    { nome: "Maria", n1: 10, n2: 9, n3: 3, n4: 9.5 },
+    { nome: "João", n1: 10, n2: 4.5, n3: 1, n4: 3.5 },
+    { nome: "Joana", n1: 1, n2: 3, n3: 9, n4: 1.5 },
+    { nome: "José", n1: 10, n2: 4.5, n3: 7, n4: 3 },
+    { nome: "Arnaldo", n1: 10, n2: 4.5, n3: 7, n4: 3 },
+    { nome: "Lucas", n1: 4.5, n2: 9, n3: 8, n4: 3 },
+    { nome: "Luana", n1: 3, n2: 7, n3: 9, n4: 3 },
+    { nome: "Beatriz", n1: 10, n2: 4, n3: 7, n4: 9 },
+    { nome: "Sergio", n1: 4.5, n2: 9.5, n3: 10, n4: 2 }
+  ];
 
-   function criarObjetoComPropriedades(arrayValores){
-    let objeto = {}
-    for(let i = 0; i< arrayValores.length; i++){
-      objeto[arrayValores[i]] = i
-    }
-    return objeto
-   }
+  alunos.forEach(aluno => {
+    aluno.media = average(aluno.n1, aluno.n2, aluno.n3, aluno.n4).toFixed(2)
+  })
 
-  
+  const html = alunos.map(aluno => `
+   <tr>
+      <td>${aluno.nome}</td>
+      <td>${aluno.n1}</td>
+      <td>${aluno.n2}</td>
+      <td>${aluno.n3}</td>
+      <td>${aluno.n4}</td>
+      <td>${(aluno.media)}</td>
+    </tr>`).join("")
 
-  const INDICES_NOTAS = criarObjetoComPropriedades(valoresPropriedades) 
-  
-    let x = 0
-    let media = 0  
-  
-    while(trs[x]){
-        
-       const tds = trs[x].querySelectorAll("td")
-       media = average(
-            parseFloat(tds[INDICES_NOTAS.n1].textContent),
-            parseFloat(tds[INDICES_NOTAS.n2].textContent),
-            parseFloat(tds[INDICES_NOTAS.n3].textContent),
-            parseFloat(tds[INDICES_NOTAS.n4].textContent)
-        )
-        x++
-
-        tds[INDICES_NOTAS.media].textContent = media.toFixed(2)
-    }
+    document.querySelector("tbody").innerHTML = html
+ 
 
 })()
