@@ -18,7 +18,9 @@
     </div>
 
     <script>
+        //querySelectorAll é estático e retorna uma nodelist
         const nodelist = document.querySelectorAll("#list li")
+        //getElement é vivo e retorna um htmlCollection
         const collection = document.getElementById("list").getElementsByTagName("li")
 
         console.log(nodelist)
