@@ -1,0 +1,16 @@
+.underlined {
+    border-bottom: 3px solid currentColor
+}
+.reproved{
+    background-color: rgb(206, 120, 120);
+    border-style: dashed;
+    border-color: red;
+}
+.aproved{
+    background-color:rgb(124, 227, 124);
+    border-style:double;
+    border-color: green;
+    border-radius: 10cqb;
+    font-weight: bold;
+    
+}

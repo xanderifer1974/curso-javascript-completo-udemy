@@ -23,11 +23,13 @@
     //antigos
   })
 
+  alunos.forEach(aluno => aluno.status =statusAproved(aluno.media) )
   const html = alunos.map(aluno => `
-   <tr>
+   <tr class="${aluno.media <7? "reproved":"aproved"}">
       <td>${aluno.nome}</td>
       ${aluno.Notas.map(n => `<td>${n}</td>`).join("")}
       <td>${(aluno.media)}</td>
+      <td>${(aluno.status)}</td>
     </tr>`).join("")
 
   document.querySelector("tbody").innerHTML = html
