@@ -20,9 +20,33 @@ const h2 = document.querySelector("h2")
 //nextSibling pega o próximo irmão, mas no caso desta função, pega inclusive texto
 console.log(h2.nextSibling)
 //Se quisermos pegar o próximo irmão, devemos utilizar nextElementSibling
-console.log(h2.nextElementSibling)
+const h2NextSibling = h2.nextElementSibling
+
+h2NextSibling.style.background = "yellow"
 //previousSibling pega o irmão anterior, mas no caso desta função, pega inclusive texto
 console.log(h2.previousSibling)
 //Se quisermos pegar o irmão anterior, devemos utilizar previousElementSibling
 console.log(h2.previousElementSibling)
+
+const link = document.querySelector("a")
+const list = document.querySelector("ul ul")
+
+console.log(link)
+console.log(list.childNodes) // Retorna todos os nós
+console.log(list.children) // Retorna apenas os nós que são elementos
+
+/*
+Demais métodos a serem mostrados:
+childNodes
+children
+firstChild
+firstElementChild
+lastChild
+lastElementChild
+hasChildNodes
+*/
+
+
+
+
 
