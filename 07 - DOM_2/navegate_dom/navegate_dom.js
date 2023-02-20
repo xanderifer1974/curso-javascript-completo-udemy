@@ -32,8 +32,8 @@ const link = document.querySelector("a")
 const list = document.querySelector("ul ul")
 
 console.log(link)
-console.log(list.childNodes) // Retorna todos os nós
-console.log(list.children) // Retorna apenas os nós que são elementos
+console.log(list.childNodes) // Retorna um nodeList com todos os nós, independente se são elementos ou não
+console.log(list.children) // Retorna um HTMLCollection, trazendo apenas os nós que são elementos
 
 /*
 Demais métodos a serem mostrados:
