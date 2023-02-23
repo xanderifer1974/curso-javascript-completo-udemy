@@ -35,10 +35,25 @@ console.log(link)
 console.log(list.childNodes) // Retorna um nodeList com todos os nós, independente se são elementos ou não
 console.log(list.children) // Retorna um HTMLCollection, trazendo apenas os nós que são elementos
 
+
+console.log(link.parentElement.firstChild) //retorno o texto
+console.log(link.parentElement.firstElementChild)
+
+console.log(link.parentElement.lastChild) //retorno o texto
+console.log(link.parentElement.lastElementChild)
+
+console.log(link.parentElement)
+
+//Verifica se o último elemento da UL, tem filhos
+let temFilhos = list.lastElementChild.hasChildNodes()
+console.log(`Tem filhos(hasChildNodes)? ${temFilhos}`)
+
+//Verificando o tipo do nó
+console.log(list.lastElementChild.childNodes[0].nodeType)
+
+
 /*
 Demais métodos a serem mostrados:
-childNodes
-children
 firstChild
 firstElementChild
 lastChild
