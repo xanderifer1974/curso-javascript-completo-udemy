@@ -30,6 +30,44 @@ title.appendChild(texto)
 console.log(title)
 
 //Desta forma ele vai inserir no final do documento
-document.body.appendChild(title)
+//document.body.appendChild(title)
 
+document.querySelector(".container").appendChild(title)
+
+// Os métodos append e preppend não funcionam no I.E 11
+//append adciona no final como o appendChild, já o prepend posiciona antes do primeiro filho
+
+//Append
+//document.querySelector(".container").append(title)
+
+//Prepend
+//document.querySelector(".container").prepend(title,"novo texto")
+
+//Os métodos append e prepend, aceitam parâmetros do tipo nó e texto
+
+/*Método - insertBefore() - Este método espera receber dois parâmetros. Um novo filho e um nó
+de referência.
+*/
+const title2 = document.createElement("h2")
+title2.textContent = "Título Nr. 2"
+document.querySelector(".container").insertBefore(title2, document.querySelector("ul"))
+
+//Simulando o prepend para IE 11
+
+const titulo3 = document.createElement("h3")
+titulo3.textContent = "Simulando o prepend no IE 11"
+
+const container = document.querySelector(".container")
+
+container.insertBefore(titulo3, container.firstChild)
+
+//Movendo a segunda UL, sendo que esta UL estará sendo clonada usando o método cloneNode
+// Caso não faço o clone, o que acontece é que o elemento é movido no DOM
+// Para clonar a Ul e os filhos, devemos passar um parâmetro true no método
+
+let  sublevel = document.querySelector("ul ul")
+sublevel = sublevel.cloneNode(true)
+const h2 = document.querySelector("h2")
+
+container.insertBefore(sublevel, h2.nextElementSibling)
 
