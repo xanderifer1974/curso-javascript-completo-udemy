@@ -71,3 +71,16 @@ const h2 = document.querySelector("h2")
 
 container.insertBefore(sublevel, h2.nextElementSibling)
 
+//Métodos after e before
+
+const segundoParagrafo = container.firstElementChild.nextElementSibling.nextElementSibling.nextElementSibling
+segundoParagrafo.after("Texto inserido com after")
+segundoParagrafo.before("Texto inserido com before")
+console.log(container.firstElementChild)
+console.log(segundoParagrafo)
+
+//Podemos inserir nó também
+const span = document.createElement("span").textContent = "Texto inserido em um nó"
+console.log(segundoParagrafo.nextElementSibling)
+segundoParagrafo.nextElementSibling.after(span)
+segundoParagrafo.nextElementSibling.before(span)
