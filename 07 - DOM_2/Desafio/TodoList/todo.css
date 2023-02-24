@@ -1,0 +1,14 @@
+.aFazer,.feito{
+    display:inline-block;
+    vertical-align: top;
+    margin: 15px;
+    padding: 10px;
+    background: #81ae87;
+}
+
+.button-todo{
+    background-color: green;
+    font-weight: bold;
+    color: azure;
+    margin: 5px;    
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>   
+    <link rel="stylesheet" href="todo.css">
+</head>
+
+<body>
+
+    <div class="aFazer">
+        <h1>A Fazer</h1>
+        <ul id="afazer">
+            <li>Fazer cronograma
+                <button  onClick="AdicionarTarefa(listaTarefas[0],0)" class="button-todo" >
+                    >>
+                </button>
+            </li>
+            <li>Criar Layout
+                <button onClick="AdicionarTarefa(listaTarefas[1],1)" class="button-todo" >
+                    >>
+                </button>
+            </li>
+            <li>Criar Backend
+                <button onClick="AdicionarTarefa(listaTarefas[2],2)" class="button-todo">
+                    >>
+                </button>
+            </li>
+            <li>Realizar Testes
+                <button onClick="AdicionarTarefa(listaTarefas[3],3)"class="button-todo" >
+                    >>
+                </button>
+            </li>
+        </ul>
+    </div>
+
+    <div class="feito">
+        <h1>Feito</h1>
+        <ul id="feito">
+           
+        </ul>
+    </div>
+
+    <script src="todo.js"></script>
+</body>
+
+</html>
