@@ -26,3 +26,21 @@ btnEventoNivel2.addEventListener("click", () => console.log("Atrelando evento - 
 //Ainda é possível colocar um função nível 2
 
 btnEventoNivel2.onclick = () => console.log("Função anônima atrelada ao botão nível 2")
+
+//Propagação de Eventos => pode ser fase, de cima para baixo ou borbulhamento de baixo para cima.
+//O padrão é borbulhamento. Neste caso, o valor padrão do 3 parâmetro é false não havendo necessidade de 
+//Informar.
+
+let btnEventoNivel3 = document.getElementById("btnEvent3")
+
+// Este padrão é de borbulhamento. O envento propaga do botão, até chegar no document.
+//Porém se colocamos o terceiro parâmetro com true, o evento irá se propagar do document
+//até chegar no botão
+btnEventoNivel3.addEventListener("click",function(){
+    console.log("Clicou no btnEvento3"), false
+}) // colocando true. O evento é propagado
+
+document.addEventListener("click", () => console.log("Clicou no documento"), false)
+
+const container = document.getElementById("container")
+container.addEventListener("click", () => console.log("clicou no container"), true)
