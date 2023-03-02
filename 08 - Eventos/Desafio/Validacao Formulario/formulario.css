@@ -89,6 +89,10 @@ textarea{
 
 }
 
+#contador{
+    display: none;
+}
+
 .contador{
     text-align: right;
     font-size: .75rem;
