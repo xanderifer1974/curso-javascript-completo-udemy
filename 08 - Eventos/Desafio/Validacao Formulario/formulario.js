@@ -9,6 +9,7 @@
     const contador = document.getElementById("contador")
     const resta = contador.getElementsByTagName("span")[0]
     const maxima = txtDescricao.maxLength
+    mostrarNumero(maxima)
 
 
 
@@ -25,10 +26,13 @@
 
     function checkLength() {
         let numerosDeLetrasDigitadas = this.value.length
-        let caracteresRestantes = parseInt(maxima) - parseInt(numerosDeLetrasDigitadas)
-        resta.textContent = caracteresRestantes
+        let caracteresRestantes = parseInt(maxima) - parseInt(numerosDeLetrasDigitadas)       
+        mostrarNumero(caracteresRestantes)
     }
 
+    function mostrarNumero(n){
+        resta.textContent = n
+    }
     //Funciona para todas as entradas do teclado,inclusive quando colamos um texto
     txtDescricao.addEventListener("input", checkLength)
 
