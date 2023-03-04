@@ -4,6 +4,8 @@
     const txtTitulo = document.getElementById("txtTitulo")
     const formCadastro = document.querySelector(".formCadastro")
     const txtDescricao = document.getElementById("txtDescricao")
+    const btn = document.getElementById("btn")
+    const ckeckboxAceito = document.getElementById("chkAceito")
 
     //constantes para manipular o contador
     const contador = document.getElementById("contador")
@@ -33,6 +35,14 @@
     function mostrarNumero(n){
         resta.textContent = n
     }
+
+    btn.disabled = true
+
+    ckeckboxAceito.addEventListener("change",function(){
+        btn.disabled = !this.checked
+    })
+
+    
     //Funciona para todas as entradas do teclado,inclusive quando colamos um texto
     txtDescricao.addEventListener("input", checkLength)
 
