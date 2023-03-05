@@ -18,9 +18,11 @@
     //O evento está relacionado ao envio do formulário.
     formCadastro.addEventListener("submit", function (event) {
         if (!txtTitulo.value) {
-            alert("Preencha todos os campos!")
+            showErrorMessage("Preencha todos os campos!",function(){
+                txtTitulo.focus()
+            })
             event.preventDefault()
-            txtTitulo.focus()
+            
         }
     })
 
@@ -35,6 +37,23 @@
     function mostrarNumero(n){
         resta.textContent = n
     }
+
+    const feedbackMessage = document.getElementById("feedbackMessage")
+    const feedbackMessageCloseBtn = feedbackMessage.getElementsByTagName("button")[0]
+
+
+    function showErrorMessage(msg, callBack){
+        feedbackMessage.classList.add("show")
+        feedbackMessage.getElementsByTagName("p")[0].textContent = msg
+
+        if(typeof callBack ==="function"){
+            callBack();
+        }
+    }
+
+    feedbackMessageCloseBtn.addEventListener("click",function(){
+        feedbackMessage.classList.remove("show")
+    })
 
     btn.disabled = true
 
