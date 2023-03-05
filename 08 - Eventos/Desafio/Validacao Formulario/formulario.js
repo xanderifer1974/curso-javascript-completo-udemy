@@ -18,11 +18,11 @@
     //O evento está relacionado ao envio do formulário.
     formCadastro.addEventListener("submit", function (event) {
         if (!txtTitulo.value) {
-            showErrorMessage("Preencha todos os campos!",function(){
+            showErrorMessage("Preencha todos os campos!", function () {
                 txtTitulo.focus()
             })
             event.preventDefault()
-            
+
         }
     })
 
@@ -30,11 +30,11 @@
 
     function checkLength() {
         let numerosDeLetrasDigitadas = this.value.length
-        let caracteresRestantes = parseInt(maxima) - parseInt(numerosDeLetrasDigitadas)       
+        let caracteresRestantes = parseInt(maxima) - parseInt(numerosDeLetrasDigitadas)
         mostrarNumero(caracteresRestantes)
     }
 
-    function mostrarNumero(n){
+    function mostrarNumero(n) {
         resta.textContent = n
     }
 
@@ -42,26 +42,31 @@
     const feedbackMessageCloseBtn = feedbackMessage.getElementsByTagName("button")[0]
 
 
-    function showErrorMessage(msg, callBack){
+    function showErrorMessage(msg, callBack) {
         feedbackMessage.classList.add("show")
         feedbackMessage.getElementsByTagName("p")[0].textContent = msg
 
-        if(typeof callBack ==="function"){
-            callBack();
+        function hideErrorMessage() {
+            feedbackMessage.classList.remove("show")
+            feedbackMessageCloseBtn.removeEventListener("click", hideErrorMessage)
+
+            if (typeof callBack === "function") {
+                callBack();                
+            }
         }
+
+        feedbackMessageCloseBtn.addEventListener("click", hideErrorMessage)
+
     }
 
-    feedbackMessageCloseBtn.addEventListener("click",function(){
-        feedbackMessage.classList.remove("show")
-    })
 
     btn.disabled = true
 
-    ckeckboxAceito.addEventListener("change",function(){
+    ckeckboxAceito.addEventListener("change", function () {
         btn.disabled = !this.checked
     })
 
-    
+
     //Funciona para todas as entradas do teclado,inclusive quando colamos um texto
     txtDescricao.addEventListener("input", checkLength)
 
