@@ -46,16 +46,26 @@
         feedbackMessage.classList.add("show")
         feedbackMessage.getElementsByTagName("p")[0].textContent = msg
 
+        feedbackMessageCloseBtn.focus()
+
         function hideErrorMessage() {
             feedbackMessage.classList.remove("show")
             feedbackMessageCloseBtn.removeEventListener("click", hideErrorMessage)
+            feedbackMessageCloseBtn.removeEventListener("keyup", pressedKeyboardOnBtn)
 
             if (typeof callBack === "function") {
-                callBack();                
+                callBack();
             }
         }
 
+        function pressedKeyboardOnBtn(event) {
+           if(event.keyCode === 27){
+            hideErrorMessage()
+           }
+        }
+
         feedbackMessageCloseBtn.addEventListener("click", hideErrorMessage)
+        feedbackMessageCloseBtn.addEventListener("keyup", pressedKeyboardOnBtn)
 
     }
 
