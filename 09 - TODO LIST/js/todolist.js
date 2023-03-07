@@ -5,7 +5,13 @@
     const itemInput = document.getElementById("item-input")
     const todoAddForm = document.getElementById("todo-add")
     const ul = document.getElementById("todo-list")
-    const lis = document.getElementsByTagName("li")    
+    const lis = document.getElementsByTagName("li")  
+    
+    const addEventLi = (li) =>{
+        li.addEventListener("click",function(event){
+            console.log(this)            
+        })
+    }
    
     const AddTask = (task) =>{
         const li = document.createElement("li")
@@ -16,9 +22,7 @@
         li.appendChild(p)
         ul.appendChild(li)
 
-        li.addEventListener("click",function(){
-            console.log(this)
-        })
+       addEventLi(li)
     }
 
     todoAddForm.addEventListener("submit", function (event) {
@@ -37,11 +41,8 @@
     Quando formos trabalhar com evento, não podemos utilizar o InnerHTML, pois
     o mesmo perde a referência do evento.
     */
-    [...lis].forEach(element => {
-        element.addEventListener("click",function(event){
-            console.log(this)            
-        })
-        
+    [...lis].forEach(li => {
+        addEventLi(li)        
     });
 
 
