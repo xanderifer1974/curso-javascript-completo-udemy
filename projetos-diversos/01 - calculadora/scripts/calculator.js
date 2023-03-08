@@ -1,7 +1,7 @@
 ; (function () { 
     "use strict"
 
-    let calculadora = new CalculadoraController()
+    let calculadora = new CalculatorController()
 
     calculadora.
 
