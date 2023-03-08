@@ -1,7 +1,7 @@
 ;(function () { 
     "use strict"
 
-    let calculator = new CalculatorController()
+    window.calculator = new CalculatorController()
 
     
 

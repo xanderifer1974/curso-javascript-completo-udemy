@@ -1,35 +1,61 @@
-class CalculatorController{
+class CalculatorController {
 
-    constructor(){
+    constructor() {
 
-        this._displayCalc = "0"
+        this._locale = 'pt-BR'
+        this._displayCalEl = document.querySelector("#display")
+        this._dateEl = document.querySelector("#data")
+        this._timeEl = document.querySelector("#hora")
         this._currentDate
         this.initialize()
     }
 
-    initialize(){
-        let displayCalEl = document.querySelector("#display")
-        let dateEl = document.querySelector("#data")
-        let timeEl = document.querySelector("#hora")
-        displayCalEl.innerHTML = "4567"
-        dateEl.innerHTML = "08/03/2023"
-        timeEl.innerHTML = "12:29"
+    initialize() {
+        this.setdisplayDateTime()
+
+        setInterval(() => {
+            this.setdisplayDateTime()
+        }, 1000)
 
     }
 
-    get displayCalc(){
-        return this._displayCalc
+    setdisplayDateTime() {
+
+        this.displayDate = this.currentDate.toLocaleDateString(this._locale,{
+            day: "2-digit",
+            month: "long",
+            year: "numeric"
+        })
+        this.displayTime = this.currentDate.toLocaleTimeString(this._locale)
     }
 
-    set displayCalc(valor){
-        this._displayCalc = valor
+    get displayTime() {
+        return this._timeEl.innerHTML
+    }
+    set displayTime(value) {
+        this._timeEl.innerHTML = value
     }
 
-    get currentDate(){
-        return this._currentDate
+    get displayDate() {
+        return this._dateEl.innerHTML
+    }
+    set displayDate(value) {
+        this._dateEl.innerHTML = value
     }
 
-    set currentDate(valor){
-        this._currentDate = valor
+    get displayCalc() {
+        return this._displayCalEl.innerHTML
+    }
+
+    set displayCalc(value) {
+        this._displayCalEl.innerHTML = value
+    }
+
+    get currentDate() {
+        return new Date();
+    }
+
+    set currentDate(value) {
+        this._currentDate = value
     }
 }
