@@ -4,6 +4,17 @@ class CalculatorController{
 
         this._displayCalc = "0"
         this._currentDate
+        this.initialize()
+    }
+
+    initialize(){
+        let displayCalEl = document.querySelector("#display")
+        let dateEl = document.querySelector("#data")
+        let timeEl = document.querySelector("#hora")
+        displayCalEl.innerHTML = "4567"
+        dateEl.innerHTML = "08/03/2023"
+        timeEl.innerHTML = "12:29"
+
     }
 
     get displayCalc(){

@@ -1,9 +1,9 @@
-; (function () { 
+;(function () { 
     "use strict"
 
-    let calculadora = new CalculatorController()
+    let calculator = new CalculatorController()
 
-    calculadora.
+    
 
 
     
