@@ -11,15 +11,20 @@ class CalculatorController {
     }
 
     initialize() {
-        this.setdisplayDateTime()
+        this.setDisplayDateTime()
 
         setInterval(() => {
-            this.setdisplayDateTime()
+            this.setDisplayDateTime()
         }, 1000)
 
     }
 
-    setdisplayDateTime() {
+    initButtonsEvents(){
+
+        let buttons = document.querySelectorAll("#buttons > g, #parts > g")
+    }
+
+    setDisplayDateTime() {
 
         this.displayDate = this.currentDate.toLocaleDateString(this._locale,{
             day: "2-digit",
