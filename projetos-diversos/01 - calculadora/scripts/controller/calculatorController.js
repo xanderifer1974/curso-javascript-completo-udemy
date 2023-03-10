@@ -19,6 +19,8 @@ class CalculatorController {
             this.setDisplayDateTime()
         }, 1000)
 
+        this.setLastNumberToDisplay()
+
     }
 
     addEventListenerAll(element, events, fn) {
@@ -64,13 +66,28 @@ class CalculatorController {
 
     calc() {
 
-        let last = this._operation.pop()
+        let last = ''
+
+        if (this._operation.length > 3) {
+            let last = this._operation.pop()
+        }
+
         let result = eval(this._operation.join(""))
-        this._operation = [result, last]
+
+        if (last == '%') {
+
+            result /= 100
+            this._operation = [result]
+
+        } else {
+
+            this._operation = [result]
+
+            if(last) this._operation.push(last)
+        }
 
         this.setLastNumberToDisplay()
 
-        console.log(this._operation)
     }
 
     setLastNumberToDisplay() {
@@ -84,6 +101,8 @@ class CalculatorController {
                 break
             }
         }
+
+        if (!lastNumber) lastNumber = 0
 
         this.displayCalc = lastNumber
 
@@ -134,9 +153,11 @@ class CalculatorController {
         switch (value) {
             case 'ac':
                 this.clearAll()
+                this.setLastNumberToDisplay()
                 break;
             case 'ce':
                 this.clearEntry()
+                this.setLastNumberToDisplay()
                 break;
             case 'soma':
                 this.addOperation('+')
@@ -155,7 +176,7 @@ class CalculatorController {
                 break;
 
             case 'igual':
-
+                this.calc()
                 break;
 
             case 'ponto':
