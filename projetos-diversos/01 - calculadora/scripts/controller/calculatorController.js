@@ -89,7 +89,7 @@ class CalculatorController {
         } else if (this._operation.length == 3) {
 
             this._lastNumber = this.getLastItem(false)
-        }      
+        }
 
         let result = this.getResult()
 
@@ -134,9 +134,15 @@ class CalculatorController {
 
         let lastNumber = this.getLastItem(false)
 
-        lastNumber = (!lastNumber)? 0: lastNumber       
+        lastNumber = (!lastNumber) ? 0 : lastNumber
 
-        this.displayCalc = lastNumber
+        if (lastNumber.length > 12) {
+
+            this.setError()
+        } else {
+            this.displayCalc = lastNumber
+        }
+
 
     }
 
@@ -164,7 +170,7 @@ class CalculatorController {
             } else {
 
                 let newValue = this.getLastOperation().toString() + value.toString()
-                this.setLastOperation(parseFloat(newValue))
+                this.setLastOperation(newValue)
 
                 this.setLastNumberToDisplay()
             }
@@ -176,12 +182,15 @@ class CalculatorController {
         this.displayCalc = "Error"
     }
 
-    addDot(){
+    addDot() {
 
         let lastOperation = this.getLastOperation()
-        if(this.isOperator(lastOperation) || !lastOperation){
+
+        if (typeof lastOperation === 'string' && lastOperation.split('').indexOf('.') > -1) return
+
+        if (this.isOperator(lastOperation) || !lastOperation) {
             this.pushOperation('0.')
-        }else{
+        } else {
             this.setLastOperation(lastOperation.toString() + '.')
         }
 
