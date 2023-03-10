@@ -58,24 +58,38 @@ class CalculatorController {
         this._operation.push(value)
 
         if (this._operation.length > 3) {
-           this.calc()            
+            this.calc()
         }
     }
 
-    calc(){
+    calc() {
 
         let last = this._operation.pop()
         let result = eval(this._operation.join(""))
         this._operation = [result, last]
 
+        this.setLastNumberToDisplay()
+
         console.log(this._operation)
     }
 
-    setLastNumberToDisplay(){
+    setLastNumberToDisplay() {
+
+        let lastNumber
+
+        for (let i = this._operation.length - 1; i >= 0; i--) {
+
+            if (!this.isOperator(this._operation[i])) {
+                lastNumber = this._operation[i]
+                break
+            }
+        }
+
+        this.displayCalc = lastNumber
 
     }
 
-    addOperation(value) {        
+    addOperation(value) {
 
         if (isNaN(this.getLastOperation())) {
 
@@ -85,11 +99,12 @@ class CalculatorController {
 
             } else if (isNaN(value)) {
 
-            console.log("outra coisa >", value)
+                console.log("outra coisa >", value)
 
             } else {
 
                 this.pushOperation(value)
+                this.setLastNumberToDisplay()
 
             }
 
@@ -103,6 +118,8 @@ class CalculatorController {
 
                 let newValue = this.getLastOperation().toString() + value.toString()
                 this.setLastOperation(parseInt(newValue))
+
+                this.setLastNumberToDisplay()
             }
         }
 
