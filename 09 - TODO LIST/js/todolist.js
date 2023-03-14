@@ -6,16 +6,15 @@
     const todoAddForm = document.getElementById("todo-add")
     const ul = document.getElementById("todo-list")
 
+    //No nosso exemplo, estamos utilizando getElementsBytagName, pois ele mantem
+    //sempre o índice atualizado quando criamos uma li dinamicamente.
+    const lis = ul.getElementsByTagName("li")
+
 
     let arrayTask = [
         
     ]
-
-    // const addEventLi = (li) => {
-    //     li.addEventListener("click", function (event) {
-    //         console.log(this)
-    //     })
-    // }
+    
 
     function generateLiTask(obj) {
 
@@ -94,6 +93,20 @@
         // no lugar de switch ou if else
         //As propriedades precisam ter o mesmo nome do atributo para casar
         //Com a função
+        const dataAction = event.target.getAttribute("data-action")
+
+        //Se dataAction for nulo, sai da função
+        if (!dataAction) return
+
+        //Código para obter a LI atual
+        let currenteLi = event.target
+        while(currenteLi.nodeName !=="LI"){
+            currenteLi = currenteLi.parentElement
+        }       
+
+        //retorna o índice da li corrente
+        const curruentLiIndex = [...lis].indexOf(currenteLi)     
+
         const action = {
             editButton: function(){
                 console.log("Edit no objeto")
@@ -106,7 +119,6 @@
             }
         }
 
-        const dataAction = event.target.getAttribute("data-action")
 
         if(action[dataAction]){
             action[dataAction]()
