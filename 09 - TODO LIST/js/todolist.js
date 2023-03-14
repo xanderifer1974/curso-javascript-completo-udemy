@@ -88,9 +88,29 @@
     }
 
     const clickedUl =(event) =>
-    {
-        console.log(event.target)
-        console.log(event.target.getAttribute("data-action"))
+    {       
+
+        //Pode ser usado if else, ou switch, porém essa é uma abordagem diferente
+        // no lugar de switch ou if else
+        //As propriedades precisam ter o mesmo nome do atributo para casar
+        //Com a função
+        const action = {
+            editButton: function(){
+                console.log("Edit no objeto")
+            },
+            checkButton: function(){
+                console.log("check no objeto")
+            },
+            deleteButton: function(){
+                console.log("delete no objeto")
+            }
+        }
+
+        const dataAction = event.target.getAttribute("data-action")
+
+        if(action[dataAction]){
+            action[dataAction]()
+        }
     }
 
 
