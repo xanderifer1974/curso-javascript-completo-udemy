@@ -12,9 +12,9 @@
 
 
     let arrayTask = [
-        
+
     ]
-    
+
 
     function generateLiTask(obj) {
 
@@ -23,9 +23,9 @@
         const ckeckButton = document.createElement("button")
         const editIcon = document.createElement("i")
         const deleteIcon = document.createElement("i")
-        
+
         li.className = "todo-item"
-        
+
         ckeckButton.className = "button-check"
         ckeckButton.innerHTML = '<i class=\"fas fa-ckeck displayNone\"><\i>'
         ckeckButton.setAttribute("data-action", "checkButton") //Atributo criado para saber a ação, não é um atributo nativo
@@ -43,7 +43,7 @@
         const containerEdit = document.createElement("div")
         containerEdit.className = "editContainer"
         const inputEdit = document.createElement("input")
-        inputEdit.setAttribute("type","text")
+        inputEdit.setAttribute("type", "text")
         inputEdit.className = "editInput"
         containerEdit.appendChild(inputEdit)
         const containerEditButton = document.createElement("button")
@@ -62,7 +62,7 @@
         deleteIcon.className = "fas fa-trash-alt"
         deleteIcon.setAttribute("data-action", "deleteButton")
         li.appendChild(deleteIcon)
-        
+
         // addEventLi(li)
 
         return li
@@ -86,8 +86,7 @@
         })
     }
 
-    const clickedUl =(event) =>
-    {       
+    const clickedUl = (event) => {
 
         //Pode ser usado if else, ou switch, porém essa é uma abordagem diferente
         // no lugar de switch ou if else
@@ -100,28 +99,34 @@
 
         //Código para obter a LI atual
         let currenteLi = event.target
-        while(currenteLi.nodeName !=="LI"){
+        while (currenteLi.nodeName !== "LI") {
             currenteLi = currenteLi.parentElement
-        }       
+        }
 
         //retorna o índice da li corrente
-        const currentLiIndex = [...lis].indexOf(currenteLi)     
+        const currentLiIndex = [...lis].indexOf(currenteLi)
 
         const action = {
-            editButton: function(){
-                console.log("Edit no objeto")
+            editButton: function () {
+                const editContainer = currenteLi.querySelector(".editContainer");
+
+                [...ul.querySelectorAll(".editContainer")].forEach(container => {
+                    container.removeAttribute("style")
+                });
+
+                editContainer.style.display = "flex";
             },
-            checkButton: function(){
+            checkButton: function () {
                 console.log("check no objeto")
             },
-            deleteButton: function(){
-                arrayTask.splice(currentLiIndex,1)
-               renderTask()
+            deleteButton: function () {
+                arrayTask.splice(currentLiIndex, 1)
+                renderTask()
             }
         }
 
 
-        if(action[dataAction]){
+        if (action[dataAction]) {
             action[dataAction]()
         }
     }
@@ -136,7 +141,7 @@
     });
 
 
-    ul.addEventListener("click",clickedUl)
+    ul.addEventListener("click", clickedUl)
 
     renderTask()
 
