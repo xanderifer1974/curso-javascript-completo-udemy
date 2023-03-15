@@ -45,6 +45,7 @@
         const inputEdit = document.createElement("input")
         inputEdit.setAttribute("type", "text")
         inputEdit.className = "editInput"
+        inputEdit.value = obj.name
         containerEdit.appendChild(inputEdit)
         const containerEditButton = document.createElement("button")
         containerEditButton.className = "editButton"
@@ -108,7 +109,7 @@
 
         const action = {
             editButton: function () {
-                const editContainer = currenteLi.querySelector(".editContainer");
+                const editContainer = currenteLi.querySelector(".editContainer");               
 
                 [...ul.querySelectorAll(".editContainer")].forEach(container => {
                     container.removeAttribute("style")
@@ -121,6 +122,11 @@
             },
             deleteButton: function () {
                 arrayTask.splice(currentLiIndex, 1)
+                renderTask()
+            },
+            containerEditButton: function(){
+                const val = currenteLi.querySelector(".editInput").value
+                arrayTask[currentLiIndex].name = val
                 renderTask()
             }
         }
