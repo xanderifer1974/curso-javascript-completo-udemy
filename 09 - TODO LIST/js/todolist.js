@@ -105,7 +105,7 @@
         }       
 
         //retorna o índice da li corrente
-        const curruentLiIndex = [...lis].indexOf(currenteLi)     
+        const currentLiIndex = [...lis].indexOf(currenteLi)     
 
         const action = {
             editButton: function(){
@@ -115,7 +115,8 @@
                 console.log("check no objeto")
             },
             deleteButton: function(){
-                console.log("delete no objeto")
+                arrayTask.splice(currentLiIndex,1)
+               renderTask()
             }
         }
 
