@@ -27,7 +27,7 @@
         li.className = "todo-item"
 
         ckeckButton.className = "button-check"
-        ckeckButton.innerHTML = '<i class=\"fas fa-ckeck displayNone\"><\i>'
+        ckeckButton.innerHTML = '<i class="fas fa-check displayNone" data-action="checkButton"><\i>'
         ckeckButton.setAttribute("data-action", "checkButton") //Atributo criado para saber a ação, não é um atributo nativo
         li.appendChild(ckeckButton)
 
@@ -118,7 +118,15 @@
                 editContainer.style.display = "flex";
             },
             checkButton: function () {
-                console.log("check no objeto")
+              arrayTask[currentLiIndex].completed = !arrayTask[currentLiIndex].completed              
+
+              if(arrayTask[currentLiIndex].completed){
+                currenteLi.querySelector(".fa-check").classList.remove("displayNone")
+                console.log(currenteLi.querySelector(".fa-ckeck"))
+              }else{
+                currenteLi.querySelector(".fa-check").classList.add("displayNone")
+              }
+             
             },
             deleteButton: function () {
                 arrayTask.splice(currentLiIndex, 1)
