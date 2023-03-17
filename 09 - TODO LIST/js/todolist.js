@@ -10,11 +10,22 @@
     //sempre o índice atualizado quando criamos uma li dinamicamente.
     const lis = ul.getElementsByTagName("li")
 
+    let  arrayTask = getSavedData()     
 
-    let arrayTask = [
+   
+    function getSavedData(){
+        let taskData =  localStorage.getItem("tasks")         
+        
+        taskData = JSON.parse(taskData)       
 
-    ]
+        return taskData !==null? taskData: [
+        ]
+        
+    }
 
+    function setNewData(){
+        localStorage.setItem("tasks",JSON.stringify(arrayTask))
+    }
 
     function generateLiTask(obj) {
 
@@ -26,8 +37,12 @@
 
         li.className = "todo-item"
 
-        ckeckButton.className = "button-check"
-        ckeckButton.innerHTML = '<i class="fas fa-check displayNone" data-action="checkButton"><\i>'
+        ckeckButton.className = "button-check"        
+        if(obj.completed){
+            ckeckButton.innerHTML = '<i class="fas fa-check" data-action="checkButton"><\i>'
+        }else{
+            ckeckButton.innerHTML = '<i class="fas fa-check displayNone" data-action="checkButton"><\i>'
+        }       
         ckeckButton.setAttribute("data-action", "checkButton") //Atributo criado para saber a ação, não é um atributo nativo
         li.appendChild(ckeckButton)
 
@@ -62,9 +77,7 @@
 
         deleteIcon.className = "fas fa-trash-alt"
         deleteIcon.setAttribute("data-action", "deleteButton")
-        li.appendChild(deleteIcon)
-
-        // addEventLi(li)
+        li.appendChild(deleteIcon)       
 
         return li
 
@@ -85,6 +98,8 @@
             createAt: Date.now().toLocaleString("pt-BR"),
             completed: true
         })
+
+        setNewData()
     }
 
     const clickedUl = (event) => {
@@ -118,24 +133,34 @@
                 editContainer.style.display = "flex";
             },
             checkButton: function () {
-              arrayTask[currentLiIndex].completed = !arrayTask[currentLiIndex].completed              
-
+              
+              arrayTask[currentLiIndex].completed = !arrayTask[currentLiIndex].completed       
+             
               if(arrayTask[currentLiIndex].completed){
-                currenteLi.querySelector(".fa-check").classList.remove("displayNone")
-                console.log(currenteLi.querySelector(".fa-ckeck"))
+                currenteLi.querySelector(".fa-check").classList.remove("displayNone")                
               }else{
                 currenteLi.querySelector(".fa-check").classList.add("displayNone")
               }
+
+              setNewData()
+            
+
+              
              
+             
+             
+              
             },
             deleteButton: function () {
                 arrayTask.splice(currentLiIndex, 1)
                 renderTask()
+                setNewData()
             },
             containerEditButton: function(){
                 const val = currenteLi.querySelector(".editInput").value
                 arrayTask[currentLiIndex].name = val
                 renderTask()
+                setNewData()
             },
             containerCancelButton: function(){
                 currenteLi.querySelector(".editContainer").removeAttribute("style")
